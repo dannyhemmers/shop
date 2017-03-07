@@ -18,7 +18,7 @@ class OrderController extends Controller
       $props = "Props Nr.".$request->get('props');
       $stands = "Stands Nr.".$request->get('stands');
 
-      Cart::add(1, $frame , 1, 10 );
+      $gumo = Cart::add(1, $frame , 1, 10 );
       Cart::add(2, $arms , 1, 10 );
       Cart::add(3, $motors , 1, 10 );
       Cart::add(4, $props , 1, 10 );

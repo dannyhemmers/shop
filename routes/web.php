@@ -22,9 +22,11 @@ Route::get('impressum', function(){
 
 Route::post('finishconfig', 'OrderController@addToCart');
 
-Route::get('drohne/{id}', 'ArticleController@show');
+Route::get('article/{id}', 'ArticleController@show');
 Route::get('configure', 'ArticleController@configure');
 Route::get('shoppingcart', 'OrderController@listCart')->name('shoppingcart');
+
+Route::get('category/{name}', 'CategoryController@show');
 
 Route::post('destroycart', function(){
   Cart::destroy();

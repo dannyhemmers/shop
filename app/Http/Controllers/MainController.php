@@ -10,11 +10,11 @@ use DB;
 class MainController extends Controller
 {
     //
-    
+
      public function index()
     {
-        $articles = DB::table('articles')->limit(3)->get();
+        $drones = DB::table('drones')->limit(3)->get();
 
-        return view('shopmain', ['articles' => $articles]);
+        return view('shopmain', ['drones' => $drones]);
     }
 }

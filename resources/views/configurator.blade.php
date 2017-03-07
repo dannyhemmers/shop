@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 
 
   <script src="{{asset('three_js/build/three.min.js')}}"></script>
@@ -48,15 +48,10 @@ appended = false;
 loading = true
 showLoadingStatus();
 
-dropdownFrame = document.getElementById("frameSelect");
-dropdownArms = document.getElementById("armsSelect");
-dropdownMotor = document.getElementById("motorSelect");
-dropdownProps = document.getElementById("propSelect");
-
-dropdownFrame.options[1].selected = true;
-dropdownArms.options[3].selected = true;
-dropdownMotor.options[1].selected = true;
-dropdownProps.options[1].selected = true;
+// dropdownFrame = document.getElementById("frameSelect");
+// dropdownArms = document.getElementById("armsSelect");
+// dropdownMotor = document.getElementById("motorSelect");
+// dropdownProps = document.getElementById("propSelect");
 
 //Erstellung der Loader
 frameLoader = new THREE.ColladaLoader();
@@ -166,7 +161,7 @@ propsLoader = new THREE.ColladaLoader();
 
   	//Erstellung des renderers
   	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  	renderer.setSize(renderWindow.clientWidth, renderWindow.clientHeight, true);
+  	renderer.setSize((renderWindow.clientWidth), renderWindow.clientHeight, true);
   	//renderer.setClearColor(0xf7f6f0);
   	renderer.setClearColor(0xFFFFFF);
 
@@ -182,7 +177,7 @@ propsLoader = new THREE.ColladaLoader();
 
   function addCamera() {
     //Erstellung der Kamera			Betrachtungswinkel, Seitenverhältnis, ???, Kamerasichtweite (kann bis 1000 weit sehen)
-  	kamera = new THREE.PerspectiveCamera(30, renderWindow.clientWidth/renderWindow.clientHeight, 1, 100000);
+  	kamera = new THREE.PerspectiveCamera(30, (renderWindow.clientWidth)/renderWindow.clientHeight, 1, 100000);
   	kamera.position.z = 13;
   	kamera.position.y = 7;
   	kamera.rotation.x = -0.78; // in rad, sind ca. 45°
@@ -238,8 +233,8 @@ propsLoader = new THREE.ColladaLoader();
   	}
   }
 
-  function selectedFrame() {
-    var strUser = dropdownFrame.options[dropdownFrame.selectedIndex].value;
+  function selectedFrame(value) {
+    var strUser = value;
 
   	if (strUser == "0") {
   		frame.visible = false;
@@ -253,8 +248,8 @@ propsLoader = new THREE.ColladaLoader();
   	}
   }
 
-  function selectedArms() {
-    var strUser = dropdownArms.options[dropdownArms.selectedIndex].value;
+  function selectedArms(value) {
+    var strUser = value;
 
   	if (strUser == "0") {
   		superLightArms.visible = false;
@@ -291,45 +286,45 @@ propsLoader = new THREE.ColladaLoader();
   	}
   }
 
-  function selectedMotor() {
-    var strUser = dropdownMotor.options[dropdownMotor.selectedIndex].value;
+  function selectedMotor(value) {
+    var strUser = value;
 
-if (strUser == "0") {
-  motorBlack.visible = false;
-  motorBlue.visible = false;
-  motorGreen.visible = false;
-  motorRed.visible = false;
+    if (strUser == "0") {
+      motorBlack.visible = false;
+      motorBlue.visible = false;
+      motorGreen.visible = false;
+      motorRed.visible = false;
 
-  deselectProps();
-}
-else if (strUser == "1") {
-  motorBlack.visible = true;
-  motorBlue.visible = false;
-  motorGreen.visible = false;
-  motorRed.visible = false;
-}
-else if (strUser == "2") {
-  motorBlack.visible = false;
-  motorBlue.visible = true;
-  motorGreen.visible = false;
-  motorRed.visible = false;
-}
-else if (strUser == "3") {
-  motorBlack.visible = false;
-  motorBlue.visible = false;
-  motorGreen.visible = true;
-  motorRed.visible = false;
-}
-else if (strUser == "4") {
-  motorBlack.visible = false;
-  motorBlue.visible = false;
-  motorGreen.visible = false;
-  motorRed.visible = true;
-}
+      deselectProps();
+    }
+    else if (strUser == "1") {
+      motorBlack.visible = true;
+      motorBlue.visible = false;
+      motorGreen.visible = false;
+      motorRed.visible = false;
+    }
+    else if (strUser == "2") {
+      motorBlack.visible = false;
+      motorBlue.visible = true;
+      motorGreen.visible = false;
+      motorRed.visible = false;
+    }
+    else if (strUser == "3") {
+      motorBlack.visible = false;
+      motorBlue.visible = false;
+      motorGreen.visible = true;
+      motorRed.visible = false;
+    }
+    else if (strUser == "4") {
+      motorBlack.visible = false;
+      motorBlue.visible = false;
+      motorGreen.visible = false;
+      motorRed.visible = true;
+    }
   }
 
-  function selectedProps() {
-    var strUser = dropdownProps.options[dropdownProps.selectedIndex].value;
+  function selectedProps(value) {
+    var strUser = value;
 
   	if (strUser == "0") {
   		props.visible = false;
@@ -341,7 +336,7 @@ else if (strUser == "4") {
 
 
 function deselectArms() {
-	dropdownArms.options[0].selected = true;
+	//dropdownArms.options[0].selected = true;
 
 	superLightArms.visible = false;
 	lightArms.visible = false;
@@ -350,7 +345,7 @@ function deselectArms() {
 }
 
 function deselectMotor() {
-	dropdownMotor.options[0].selected = true;
+	//dropdownMotor.options[0].selected = true;
 
 	motorBlack.visible = false;
 	motorBlue.visible = false;
@@ -359,7 +354,7 @@ function deselectMotor() {
 }
 
 function deselectProps() {
-	dropdownProps.options[0].selected = true;
+	//dropdownProps.options[0].selected = true;
 
 	props.visible = false;
 }
@@ -377,15 +372,108 @@ function deselectProps() {
   }
 
   -->
+
+  $(function() {
+
+
+        $("#frame0").click( function()
+           {
+             selectedFrame(0);
+           }
+        );
+
+        $("#frame1").click( function()
+           {
+             selectedFrame(1);
+           }
+        );
+
+        $("#arm0").click( function()
+           {
+             selectedArms(0);
+           }
+        );
+
+        $("#arm1").click( function()
+           {
+             selectedArms(1);
+           }
+        );
+
+        $("#arm2").click( function()
+           {
+             selectedArms(2);
+           }
+        );
+
+        $("#arm3").click( function()
+           {
+             selectedArms(3);
+           }
+        );
+
+        $("#arm4").click( function()
+           {
+             selectedArms(4);
+           }
+        );
+
+        $("#motor0").click( function()
+             {
+               selectedMotor(0);
+             }
+        );
+
+        $("#motor1").click( function()
+             {
+               selectedMotor(1);
+             }
+        );
+
+        $("#motor2").click( function()
+             {
+               selectedMotor(2);
+             }
+        );
+
+        $("#motor3").click( function()
+             {
+               selectedMotor(3);
+             }
+        );
+
+        $("#motor4").click( function()
+             {
+               selectedMotor(4);
+             }
+        );
+
+        $("#prop0").click( function()
+             {
+               selectedProps(0);
+             }
+        );
+
+        $("#prop1").click( function()
+             {
+               selectedProps(1);
+             }
+        );
+
+
+  });
   </script>
 
   <body onload="onLoadComplete();">
 
+    <div class="col-md-6">
   	<div id="webglContainer"></div>
   	<div id="loadingIndicator" align="center"></div>
-  	<div id="buttons" align="center">
+    </div>
+    <div class="col-md-6">
+  	<div id="buttons">
 
-      <form action="/finishconfig" method="POST">
+      <!-- <form action="/finishconfig" method="POST">
 
   						<select class="configselect form-control" id="frameSelect" onchange="selectedFrame();" name="frames" size="1">
   							<option value="0">No frame</option>
@@ -413,35 +501,77 @@ function deselectProps() {
   							<option value="0">No props</option>
   							<option value="1" selected>Standard props</option>
   						</select>
-
-
-  							<select class="configselect form-control" id="standsSelect" onchange="selectedStands();" name="stands" size="1">
-  								<option value="0">No stands</option>
-  								<option value="1" selected>DJI F450 stands</option>
-  							</select>
                 {{ csrf_field() }}
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Abschließen</button>
 
-              </form>
+              </form> -->
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" id="frame0" class="btn btn-primary">Kein Rahmen</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="frame1" class="btn btn-primary">TBS Discovery Pro frame</button>
+                </div>
+              </div>
 
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" id="arm0" class="btn btn-primary">Keine Arme</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="arm1" class="btn btn-primary">Superleichte Arme</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="arm2" class="btn btn-primary">Leichte Arme</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="arm3" class="btn btn-primary">Normale Arme</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="arm4" class="btn btn-primary">Solide Arme</button>
+                </div>
+              </div>
 
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" id="motor0" class="btn btn-primary">Kein Motor</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="motor1" class="btn btn-primary">Schwarzer Motor</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="motor2" class="btn btn-primary">Blauer Motor</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="motor3" class="btn btn-primary">Grüner Motor</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="motor4" class="btn btn-primary">Roter Motor</button>
+                </div>
+              </div>
+
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" id="prop0" class="btn btn-primary">Keine Props</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" id="prop1" class="btn btn-primary">Standard Props</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="sel1">Drohne zusammenbauen?</label>
+                <select class="form-control" id="sel1">
+                  <option>Ja</option>
+                  <option>Nein</option>
+                </select>
+              </div>
+              <button class="btn btn-lg">Abschicken</button>
+</div>
 </div>
 
-<div class="row">
-
-</div>
-
-<div class="row">
-
-<div class="col-md-4">
-
-</div>
-  <div class="col-md-4">
 
 
-  </div>
-
-</div>
 
 @endsection
