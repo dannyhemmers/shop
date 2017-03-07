@@ -19,7 +19,10 @@
       				  <li><a href="/category/frames">Rahmen</a></li>
       				  <li><a href="/category/arms">Arme</a></li>
       				  <li><a href="/category/motors">Motoren</a></li>
-      				  <li><a href="/category/props">Props</a></li>
+      				  <li><a href="/category/props">Propeller</a></li>
+                <li><a href="/category/controllers">Controller</a></li>
+                <li><a href="/category/power">Stromversorgung</a></li>
+                <li><a href="/category/other">Andere</a></li>
       			</div>
       		</div>
 
@@ -52,7 +55,7 @@
           <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="col-item">
               <div class="post-img-content">
-                  <img src="/images/{{$article->image}}" class="img-responsive" />
+                  <img src="/images/{{$article->image}}" class="img-responsive"" />
                   <span class="post-title">
                         {{$article->name}}
                   </span>
@@ -65,7 +68,7 @@
                   </div>
                   <div class="separator clear-left">
                       <p class="btn-add">
-                          <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Zum Warenkorb hinzufügen</a></p>
+                          <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">In den Warenkorb</a></p>
                       <p class="btn-details">
                           <i class="fa fa-list"></i><a href="/article/{{$article->id}}" class="hidden-sm">Details</a></p>
                   </div>

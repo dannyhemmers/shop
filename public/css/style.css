@@ -2,6 +2,18 @@
    outline: none !important;
 }
 
+
+.post-img-content
+{
+    height: 196px;
+    position: relative;
+}
+.post-img-content img
+{
+    position: absolute;
+    padding: 1px;
+    border-radius: 10px 10px 0 0 ;
+}
 #webglContainer
 {
   height: 600px;

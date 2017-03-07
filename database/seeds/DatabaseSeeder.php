@@ -52,6 +52,10 @@ class DatabaseSeeder extends Seeder
           'name' => 'power',
        ]);
 
+       DB::table('categories')->insert([
+          'name' => 'other',
+       ]);
+
        DB::table('articles')->insert([
           'category' => 2,
           'name' => 'Frame ZMR 250 Carbon',
@@ -102,7 +106,59 @@ class DatabaseSeeder extends Seeder
        'price' => 10,
    ]);
 
+   DB::table('articles')->insert([
+      'category' => 7,
+      'name' => 'Mini Stromverteilerplatine',
+      'image' => 'Stromverteilerplatine5Vu12VBEC.JPG',
+      'description' => '5V BEC und 12V BEC Ausgang',
+      'description_long' => '5V BEC und 12V BEC<br>LED Schalter',
+      'weight' => 6,
+      'width' => 36,
+      'length' => 36,
+      'height' => 1.6,
+      'price' => 10,
+  ]);
 
+  DB::table('articles')->insert([
+     'category' => 6,
+     'name' => 'OpenPilot CC3D Flugcontroller',
+     'image' => 'FlugcontrollerCC3D.JPG',
+     'description' => 'CC3D Flugsteuerung',
+     'description_long' => 'CC3D Flugsteuerung für OPENPILOT oder CLEANFLIGHT Software',
+     'price' => 20,
+ ]);
+
+ DB::table('articles')->insert([
+    'category' => 5,
+    'name' => 'Propeller 6 x 4.5“R (4 Stück)',
+    'image' => 'Propeller6x4.5ZollR.jpg',
+    'description' => 'Durchmesser: 6 Zoll (15,24cm)',
+    'description_long' => 'Durchmesser: 6 Zoll (15,24cm)<br>Steigung: 4.5 Zoll (11,43cm)Bohrung: 6mm (inkl. Adapter für 3mm, 4mm, 5mm Wellendurchmesser)<br>Material: Carbon-Verstärktes Nylon<br>Farbe: Schwarz<br>Inhalt: 4 Stück- Rechtsdrehend (R)',
+    'weight' => 5,
+    'price' => 20,
+]);
+
+DB::table('articles')->insert([
+   'category' => 8,
+   'name' => 'OrangeRX R615X Empfänger DSM2/DSMX 6 Kanal 2,4GH',
+   'image' => 'EmpfaengerR615X6Kanal.jpg',
+   'description' => 'Reichweite: 500-800 Meter',
+   'description_long' => 'Reichweite: 500-800 Meter<br>Spannungsbereich: 3,7V - 9,6V',
+   'weight' => 9.8,
+   'width' => 43,
+   'length' => 22,
+   'height' => 13,
+   'price' => 20,
+]);
+
+DB::table('articles')->insert([
+   'category' => 8,
+   'name' => 'Montageset (4 Stück)',
+   'image' => 'Kabelset.jpg',
+   'description' => '4 Stück Servokabel',
+   'description_long' => '4 Stück Servokabel<br>Diverse Stromkabel<br>Diverse Stecker<br>Schrumpfschläuche<br>Kabelbinder',
+   'price' => 15,
+]);
 
     }
 }

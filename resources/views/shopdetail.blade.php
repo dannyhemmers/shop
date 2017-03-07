@@ -11,7 +11,7 @@
 
         <div class="col-sm-6">
           <p>{{$article->name}}</p>
-          <img src="/images/{{$article->image}}" class="img-rounded" alt="Bild">
+          <img src="/images/{{$article->image}}" class="img-responsive" alt="Bild">
         </div>
 
         <div class="col-sm-4">

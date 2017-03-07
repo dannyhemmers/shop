@@ -47,24 +47,7 @@
   	  <div class="collapse navbar-collapse navbar-ex1-collapse">
   		<ul class="nav navbar-nav">
           <li><a href="{{ url('/configure') }}">Drohne Konfigurieren</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produkte<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Fertige Drohnen</a></li>
-              <li class="divider"></li>
-
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Einzelteile</a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Rahmen</a></li>
-                <li><a href="#">Arme</a></li>
-                <li><a href="#">Motoren</a></li>
-                <li><a href="#">Props</a></li>
-                <li><a href="#">Ständer</a></li>
-                </ul>
-                </li>
-            </ul>
-          </li>
+          <li><a href="#">Über uns</a></li>
   		</ul>
   		 <ul class="nav navbar-nav navbar-right">
          <li><a href="/shoppingcart">Warenkorb <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>

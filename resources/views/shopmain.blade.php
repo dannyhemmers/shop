@@ -19,7 +19,10 @@
       				  <li><a href="/category/frames">Rahmen</a></li>
       				  <li><a href="/category/arms">Arme</a></li>
       				  <li><a href="/category/motors">Motoren</a></li>
-      				  <li><a href="/category/props">Props</a></li>
+      				  <li><a href="/category/props">Propeller</a></li>
+                <li><a href="/category/controllers">Controller</a></li>
+                <li><a href="/category/power">Stromversorgung</a></li>
+                <li><a href="/category/other">Andere</a></li>
       			</div>
       		</div>
 
@@ -48,6 +51,30 @@
 
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+
+              <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h4>JETZT KONFIGURIEREN</h4>
+                </div>
+                <div class="panel-body">
+                    <a href="/configure"><h4>Erstelle jetzt in unserem neuen 3D-Konfigurator deine eigene Drohne!</h4></a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+
+            <h4>Oder sieh dir eine unserer fertigen Drohnen an:</h4>
+          </div>
+          </div>
+
         		<!-- SLIDER -->
         		<div class="row">
         			<div class="col-sm-12 col-lg-12">
@@ -58,16 +85,15 @@
                         </ol>
                         <div class="carousel-inner">
                           <div class="item active">
-                            <a href="1"><img src="images/zmr250.jpg" alt="post image"></a>
+                            <a href="#"><img src="images/zmr250.jpg" alt="post image"></a>
                             <div class="carousel-caption">
                               <h4>Race Drohne ZMR 250</h4>
                             </div>
                           </div>
                           <div class="item">
-                            <a href="2"><img src="images/zmr250.jpg" alt="post image"></a>
+                            <a href="#"><img src="images/FrameTarotIronMan650.png" alt="post image"></a>
                             <div class="carousel-caption">
-                              <h4>Third Thumbnail label</h4>
-                              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                              <h4>Tarot Drohne</h4>
                             </div>
                           </div>
                         </div>
