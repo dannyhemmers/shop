@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container">
 <div class='impressum'><h1>Impressum</h1><p>Angaben gemäß § 5 TMG</p><p>Max Muster <br>
 Musterweg<br>
 12345 Musterstadt <br>
@@ -27,5 +27,5 @@ Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten d
 </p><br>
 Website Impressum von <a href="http://www.impressum-generator.de">impressum-generator.de</a>
  </div>
-
+</div>
 @endsection

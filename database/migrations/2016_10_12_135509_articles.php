@@ -20,7 +20,7 @@ class Articles extends Migration
             $table->string('name');
             $table->string('image')->default('');
             $table->string('description')->default('');
-            $table->string('description_long')->default('');
+            $table->text('description_long');
             $table->float('weight', 8, 2)->default(0);
             $table->float('length', 8, 2)->default(0);
             $table->float('width', 8, 2)->default(0);

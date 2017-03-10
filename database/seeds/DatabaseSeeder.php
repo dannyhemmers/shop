@@ -160,5 +160,108 @@ DB::table('articles')->insert([
    'price' => 15,
 ]);
 
+DB::table('articles')->insert([
+   'category' => 2,
+   'name' => 'Frame Tarot Iron Man 650',
+   'image' => 'FrameTarotIronMan650.jpg',
+   'description' => '650 mm Motoren abstand',
+   'description_long' => '650 mm Motoren abstand<br>Propeller: 12-15 Zoll<br>Durchmesser 650mm<br>3K Carbon<br>16mm 3K Carbon Ausleger',
+   'weight' => 476,
+   'price' => 120,
+]);
+
+DB::table('articles')->insert([
+   'category' => 4,
+   'name' => 'Tarot 4008 MT 3300kv TL2955 Brushless Multicopter Motor (4 Stück)',
+   'image' => 'TarotBrushlesMotor.jpg',
+   'description' => '(4er Pack) KV: 3300',
+   'description_long' => 'KV: 3300<br>Durchmesser: 44,5 mm<br>Durchmesser Propeller Schaft: 12mm',
+   'weight' => 85,
+   'length' => 19,
+   'price' => 240,
+]);
+
+DB::table('articles')->insert([
+   'category' => 7,
+   'name' => 'Tarot Stromverteilerplatine 6x',
+   'image' => 'TarotVerteilerplatine.jpg',
+   'description' => '(4er Pack) KV: 3300',
+   'description_long' => 'Eingangsspannung: 2-6S',
+   'weight' => 12,
+   'width' => 50,
+   'length' => 50,
+   'height' => 11.5,
+   'price' => 15,
+]);
+
+DB::table('articles')->insert([
+   'category' => 6,
+   'name' => 'Tarot ZYX-M Flight Controller – Multicopter Steuerung mit GPS – Set',
+   'image' => 'TarotZYX-MFligthController.jpg',
+   'description' => 'Flight Controller ZYX-M mit GPS Kompass Modul',
+   'description_long' => 'Flight Controller ZYX-M<br>GPS Kompass Modul<br>Power Modul zur Spannungsversorgung<br>Signal LED<br>USB-Modul zum Anschluss am PC (inkl. USB Kabel)<br>8x Patchkabel zur Verbindung mit dem Empfänger<br>Klebepads<br><br>Daten Flight Controller<br>	Größe: 55mm x 40mm x 15mm<br>	Gewicht 46 g<br>Spannung 4,8 – 5,5V<br><br>Daten GPS Modul:<br>Größe: 50mm x 50mm x 15mm<br>Gewicht: 27g<br>',
+   'price' => 150,
+]);
+
+DB::table('articles')->insert([
+   'category' => 5,
+   'name' => 'Tarot A14EVO 15 Zoll CF Klappluftschrauben CW/CCW',
+   'image' => 'TarotPropeller15Zoll.png',
+   'description' => 'Durchmesser: 15 Zoll',
+   'description_long' => 'Durchmesser: 15 Zoll<br>Steigung: 4.5 Zoll<br>Bohrung:4mm Mittelbohrung (Befestigungslöcher je 3mm)<br>Material: Carbon Fiber<br>Farbe: Schwarz<br>Inhalt: 4 Stück- Rechtsdrehend (R)',
+   'weight' => 25,
+   'price' => 65,
+]);
+
+DB::table('articles')->insert([
+   'category' => 6,
+   'name' => '(4er Pack) EMAX 12 A Simon K Regler für Multicopter (4 Stück)',
+   'image' => 'Regler-EMax30Ampere36S.jpg',
+   'description' => 'Strom: 12A',
+   'description_long' => 'Strom: 12A<br>Burst-Strom: 15A<br>Batterie: 1-3S LiPo',
+   'weight' => 8,
+   'width' => 22,
+   'length' => 17,
+   'height' => 7,
+   'price' => 50,
+]);
+
+DB::table('articles')->insert([
+   'category' => 8,
+   'name' => 'Tarot Montageset',
+   'image' => 'TarotAnschlusskabelset.jpg',
+   'description' => 'Kabelset',
+   'description_long' => '4 Stück Servokabel<br>Diverse Stromkabel<br>Diverse Stecker<br>Schrumpfschläuche<br>Kabelbinder<br>Div. Kleinmaterial',
+   'price' => 50,
+]);
+
+DB::table('articles')->insert([
+   'category' => 2,
+   'name' => 'Elektrisches Landegestell',
+   'image' => 'Landegestell.jpg',
+   'description' => 'Ansteuerung: TL8X002 Controller',
+   'description_long' => 'Ansteuerung: TL8X002 Controller<br>Betriebsspannung: 3S-6S (max. 25.2V)',
+   'price' => 80,
+]);
+
+DB::table('articles')->insert([
+   'category' => 1,
+   'name' => 'Race Copter ZMR 250',
+   'image' => 'zmr250.jpg',
+   'description' => 'ZMR 250',
+   'description_long' => 'ZMR 250 mit folgenden Spezifikationen:',
+   'price' => 225,
+]);
+
+DB::table('articles')->insert([
+   'category' => 1,
+   'name' => 'Tarot Drohne',
+   'image' => 'DrohneFull.jpg',
+   'description' => 'Tarot Drohne',
+   'description_long' => 'Tarot Drohne mit folgenden Spezifikationen:',
+   'price' => 790,
+]);
+
+
     }
 }

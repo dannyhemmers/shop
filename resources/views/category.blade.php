@@ -8,46 +8,8 @@
 
     <div class="row">
 
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      		<div class="panel panel-default">
-      			<div class="panel-heading">
-      				<h4>Produkte</h4>
-      			</div>
-      			<div class="panel-body">
-      				<ul id="cat-navi" class="nav nav-list">
-                <li><a href="/category/complete">Fertige Drohnen</a></li>
-      				  <li><a href="/category/frames">Rahmen</a></li>
-      				  <li><a href="/category/arms">Arme</a></li>
-      				  <li><a href="/category/motors">Motoren</a></li>
-      				  <li><a href="/category/props">Propeller</a></li>
-                <li><a href="/category/controllers">Controller</a></li>
-                <li><a href="/category/power">Stromversorgung</a></li>
-                <li><a href="/category/other">Andere</a></li>
-      			</div>
-      		</div>
+      @include('sidebar')
 
-      		<div class="panel panel-default visible-lg">
-      			<div class="panel-heading">
-      				<h4>Most Popular</h4>
-      			</div>
-      				<div class="panel-body">
-      					<ul id="cat-navi2" class="nav nav-list ">
-      					  <li class="active"><a href="#">Active category</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					</ul>
-      				</div>
-      		</div>
-
-      	</div>
 
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
@@ -55,13 +17,16 @@
           <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="col-item">
               <div class="post-img-content">
-                  <img src="/images/{{$article->image}}" class="img-responsive"" />
-                  <span class="post-title">
-                        {{$article->name}}
-                  </span>
+                  <img src="/images/{{$article->image}}" class="img-responsive" />
+
               </div>
+
               <div class="info">
+                <div class="ellipsis">
+                  <a href="/article/{{$article->id}}">{{$article->name}}</a>
+                </div>
                   <div class="row">
+
                       <div class="price col-md-6">
                           <h5 class="price-text-color">{{$article->price}}€</h5>
                       </div>

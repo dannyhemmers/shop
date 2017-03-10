@@ -11,7 +11,7 @@
     <title>ConfiDro</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/neutheme.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
     <script src="/js/jquery-3.1.1.min.js"></script>
@@ -30,7 +30,7 @@
 <body>
     <div id="app">
 
-  <nav class="navbar navbar-inverse" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
   	<div class="container">
   	  <!-- Brand and toggle get grouped for better mobile display -->
   	  <div class="navbar-header">

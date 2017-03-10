@@ -8,46 +8,8 @@
 
     <div class="row">
 
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      		<div class="panel panel-default">
-      			<div class="panel-heading">
-      				<h4>Produkte</h4>
-      			</div>
-      			<div class="panel-body">
-      				<ul id="cat-navi" class="nav nav-list">
-      				  <li><a href="/category/complete">Fertige Drohnen</a></li>
-      				  <li><a href="/category/frames">Rahmen</a></li>
-      				  <li><a href="/category/arms">Arme</a></li>
-      				  <li><a href="/category/motors">Motoren</a></li>
-      				  <li><a href="/category/props">Propeller</a></li>
-                <li><a href="/category/controllers">Controller</a></li>
-                <li><a href="/category/power">Stromversorgung</a></li>
-                <li><a href="/category/other">Andere</a></li>
-      			</div>
-      		</div>
+      @include('sidebar')
 
-      		<div class="panel panel-default visible-lg">
-      			<div class="panel-heading">
-      				<h4>Most Popular</h4>
-      			</div>
-      				<div class="panel-body">
-      					<ul id="cat-navi2" class="nav nav-list ">
-      					  <li class="active"><a href="#">Active category</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					  <li><a href="#">Category title</a></li>
-      					</ul>
-      				</div>
-      		</div>
-
-      	</div>
 
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
@@ -85,16 +47,12 @@
                         </ol>
                         <div class="carousel-inner">
                           <div class="item active">
-                            <a href="#"><img src="images/zmr250.jpg" alt="post image"></a>
-                            <div class="carousel-caption">
-                              <h4>Race Drohne ZMR 250</h4>
-                            </div>
+                            <a href="#"><img src="images/shopmain1.jpg" alt="post image"></a>
+
                           </div>
                           <div class="item">
-                            <a href="#"><img src="images/FrameTarotIronMan650.png" alt="post image"></a>
-                            <div class="carousel-caption">
-                              <h4>Tarot Drohne</h4>
-                            </div>
+                            <a href="#"><img src="images/shopmain2.jpg" alt="post image"></a>
+
                           </div>
                         </div>
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-prev"></span></a>
