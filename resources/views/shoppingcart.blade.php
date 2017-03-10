@@ -21,7 +21,7 @@
             Artikel: {{$row->name}}
             <br>
             Preis: {{$row->price}}€
-            <br />
+            <br>
             Anzahl: {{$row->qty}}
           </p>
         @endforeach

@@ -12,17 +12,12 @@ class OrderController extends Controller
 {
     public function addToCart(Request $request)
     {
-      $frame = "Frame Nr.".$request->get('frames');
-      $arms = "Arm Nr.".$request->get('arms');
-      $motors = "Motor Nr.".$request->get('motors');
-      $props = "Props Nr.".$request->get('props');
-      $stands = "Stands Nr.".$request->get('stands');
+      $id = $request->get('id');
+      $name = $request->get('name');
+      $amount = $request->get('amount');
+      $price = $request->get('price');
 
-      $gumo = Cart::add(1, $frame , 1, 10 );
-      Cart::add(2, $arms , 1, 10 );
-      Cart::add(3, $motors , 1, 10 );
-      Cart::add(4, $props , 1, 10 );
-      Cart::add(5, $stands , 1, 10 );
+      Cart::add($id, $name, $amount, $price);
 
       return redirect('/shoppingcart');
 

@@ -57,6 +57,24 @@ class DatabaseSeeder extends Seeder
        ]);
 
        DB::table('articles')->insert([
+          'category' => 1,
+          'name' => 'Race Copter ZMR 250',
+          'image' => 'zmr250.jpg',
+          'description' => 'ZMR 250',
+          'description_long' => 'ZMR 250 mit folgenden Spezifikationen:',
+          'price' => 225,
+       ]);
+
+       DB::table('articles')->insert([
+          'category' => 1,
+          'name' => 'Tarot Drohne',
+          'image' => 'DrohneFull.jpg',
+          'description' => 'Tarot Drohne',
+          'description_long' => 'Tarot Drohne mit folgenden Spezifikationen:',
+          'price' => 790,
+       ]);
+
+       DB::table('articles')->insert([
           'category' => 2,
           'name' => 'Frame ZMR 250 Carbon',
           'image' => 'FrameZMR250Carbon.jpg',
@@ -242,24 +260,6 @@ DB::table('articles')->insert([
    'description' => 'Ansteuerung: TL8X002 Controller',
    'description_long' => 'Ansteuerung: TL8X002 Controller<br>Betriebsspannung: 3S-6S (max. 25.2V)',
    'price' => 80,
-]);
-
-DB::table('articles')->insert([
-   'category' => 1,
-   'name' => 'Race Copter ZMR 250',
-   'image' => 'zmr250.jpg',
-   'description' => 'ZMR 250',
-   'description_long' => 'ZMR 250 mit folgenden Spezifikationen:',
-   'price' => 225,
-]);
-
-DB::table('articles')->insert([
-   'category' => 1,
-   'name' => 'Tarot Drohne',
-   'image' => 'DrohneFull.jpg',
-   'description' => 'Tarot Drohne',
-   'description_long' => 'Tarot Drohne mit folgenden Spezifikationen:',
-   'price' => 790,
 ]);
 
 

@@ -20,7 +20,7 @@ Route::get('impressum', function(){
   return view('impressum');
 });
 
-Route::post('finishconfig', 'OrderController@addToCart');
+Route::post('addToCart', 'OrderController@addToCart');
 
 Route::get('article/{id}', 'ArticleController@show');
 Route::get('configure', 'ArticleController@configure');

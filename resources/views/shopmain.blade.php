@@ -47,11 +47,11 @@
                         </ol>
                         <div class="carousel-inner">
                           <div class="item active">
-                            <a href="#"><img src="images/shopmain1.jpg" alt="post image"></a>
+                            <a href="/article/1"><img src="images/shopmain1.jpg" alt="post image"></a>
 
                           </div>
                           <div class="item">
-                            <a href="#"><img src="images/shopmain2.jpg" alt="post image"></a>
+                            <a href="/article/2"><img src="images/shopmain2.jpg" alt="post image"></a>
 
                           </div>
                         </div>

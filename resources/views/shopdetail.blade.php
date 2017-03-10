@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 
+
+<div class="container">
+<?php $bruttopreis = $article->price*1.19 ?>
 
 
     <div class="row">
@@ -15,9 +17,26 @@
 
         <div class="col-sm-4">
           <p>{!!$article->description_long!!}</p>
-          <p><h1><kbd>{{$article->price}}€</kbd></h1></p>
+          <p><h3>Nettopreis: {{$article->price}}€</h3></p>
+          <p><h1>Preis inkl. MwSt.: {{$bruttopreis}}€</h1></p>
         </div>
-        <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-shopping-cart" aria-hidden="true"></i> In den Warenkorb</button>
+        <form class="form-horizontal" role="form" method="POST" action="/addToCart">
+          {{ csrf_field() }}
+          	<input type="hidden" name="id" value="{{$article->id}}"></input>
+            <input type="hidden" name="name" value="{{$article->name}}"></input>
+            <input type="hidden" name="amount" value="1"></input>
+            <input type="hidden" name="price" value="{{$article->price}}"></input>
+
+
+    <div class="form-group">
+        <div class="">
+            <button type="submit" class="btn btn-primary">
+                In den Warenkorb
+            </button>
+
+        </div>
+    </div>
+  </form>
 
 
     </div>

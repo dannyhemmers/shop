@@ -5,7 +5,6 @@
 
 <div class="container">
 
-
     <div class="row">
 
       @include('sidebar')
@@ -14,6 +13,8 @@
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
           @foreach($articles as $article)
+          <?php $bruttopreis = $article->price*1.19 ?>
+
           <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="col-item">
               <div class="post-img-content">
@@ -28,7 +29,7 @@
                   <div class="row">
 
                       <div class="price col-md-6">
-                          <h5 class="price-text-color">{{$article->price}}€</h5>
+                          <h5 class="price-text-color">{{$bruttopreis}}€</h5>
                       </div>
                   </div>
                   <div class="separator clear-left">
