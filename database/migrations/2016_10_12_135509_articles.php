@@ -1,10 +1,10 @@
 <?php
 
-//Artikel (Einzelteile)
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//Artikel (Einzelteile)
 class Articles extends Migration
 {
     /**
@@ -28,6 +28,7 @@ class Articles extends Migration
             $table->float('diameter', 8, 2)->default(0);
             $table->float('price', 8, 2)->default(0);
             $table->timestamps();
+            $table->foreign('category')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

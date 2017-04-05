@@ -47,7 +47,14 @@
   	  <div class="collapse navbar-collapse navbar-ex1-collapse">
   		<ul class="nav navbar-nav">
           <li><a href="{{ url('/configure') }}">Drohne Konfigurieren</a></li>
-          <li><a href="#">Über uns</a></li>
+          <li><a href="{{ url('/aboutus') }}">Über uns</a></li>
+          @if (Auth::guest())
+
+          @else
+              @if(Auth::user()->is_admin)
+                <li><a href="{{ url('/admin')}}">Admin Panel</a></li>
+              @endif
+          @endif
   		</ul>
   		 <ul class="nav navbar-nav navbar-right">
          <li><a href="/shoppingcart">Warenkorb <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>

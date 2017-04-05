@@ -12,25 +12,21 @@
   <!--
 
 
-  var frameLoader;
-  var superLightArmsLoader, lightArmsLoader, normalArmsLoader, solidArmsLoader;
-  var motorBlackLoader, motorBlueLoader, motorGreenLoader, motorRedLoader;
-  var propsLoader;
+  var frame, arms, board;
+  var motor1, motor2, motor3;
+  var props1, props2, props3, props4;
+  var receiver1, receiver2;
+  var controller1, controller2, controller3, controller4;
+
+  var frameLoader, armsLoader, boardLoader, motorLoader, propsLoader, receiverLoader, controllerLoader;
 
   var renderWindow;
   var renderer;
-  var kamera;
+  var camera;
   var scene;
   var controls;
 
   var frontLight, backLight, leftLight, rightLight;
-
-  var frame;
-  var superLightArms, lightArms, normalArms, solidArms;
-  var motorBlack, motorBlue, motorGreen, motorRed;
-  var props;
-
-  var carbon;
 
   var dropdownFrame, dropdownArms, dropdownMotor, dropdownProps;
 
@@ -38,136 +34,229 @@
 
   var webglId;
 
+  var timestamp = Date.now();
+
+  var frameid = 3;
+  var framename = timestamp + ' Frame ZMR 250 Carbon';
+  var frameamount = 1;
+  var frameprice = 49.99;
+
+  var powerid = 7;
+  var powername = timestamp + " Mini Stromverteilerplatine";
+  var poweramount = 1;
+  var powerprice = 15.49;
+
+  var motorid = 4;
+  var motorname = timestamp + " Motor";
+  var motoramount = 1;
+  var motorprice = 94.9;
+
+  var propid = 9;
+  var propname = timestamp + " Propeller";
+  var propamount = 1;
+  var propprice = 34.45;
+
+  var receiverid = 10;
+  var receivername = timestamp + " Empfänger";
+  var receiveramount = 1;
+  var receiverprice = 34.90;
+
+  var controllerid = 5;
+  var controllername = timestamp + " ESC 2-4S Oneshot 20A Blau";
+  var controlleramount = 1;
+  var controllerprice = 64.49;
 
   function onLoadComplete() {
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-webglId = document.getElementById('webglContainer');
+	webglId = document.getElementById('webglContainer');
 
-appended = false;
-loading = true
-showLoadingStatus();
+	appended = false;
+	loading = true
+	showLoadingStatus();
 
-// dropdownFrame = document.getElementById("frameSelect");
-// dropdownArms = document.getElementById("armsSelect");
-// dropdownMotor = document.getElementById("motorSelect");
-// dropdownProps = document.getElementById("propSelect");
+	//Creating loaders
+	frameLoader = new THREE.ColladaLoader();
+	armsLoader = new THREE.ColladaLoader();
+	boardLoader = new THREE.ColladaLoader();
+	motorLoader = [new THREE.ColladaLoader(), new THREE.ColladaLoader(), new THREE.ColladaLoader()];
+	propsLoader = [new THREE.ColladaLoader(), new THREE.ColladaLoader(), new THREE.ColladaLoader(), new THREE.ColladaLoader()];
+	receiverLoader = [new THREE.ColladaLoader(), new THREE.ColladaLoader()];
+	controllerLoader = [new THREE.ColladaLoader(), new THREE.ColladaLoader(), new THREE.ColladaLoader(), new THREE.ColladaLoader()];
 
-//Erstellung der Loader
-frameLoader = new THREE.ColladaLoader();
-superLightArmsLoader = new THREE.ColladaLoader();
-lightArmsLoader = new THREE.ColladaLoader();
-normalArmsLoader = new THREE.ColladaLoader();
-solidArmsLoader = new THREE.ColladaLoader();
-motorBlackLoader = new THREE.ColladaLoader();
-motorBlueLoader = new THREE.ColladaLoader();
-motorGreenLoader = new THREE.ColladaLoader();
-motorRedLoader = new THREE.ColladaLoader();
-propsLoader = new THREE.ColladaLoader();
-
-  	//Erstes Collada-Model laden
-  	frameLoader.load('/../assets/copter_normal_frame.dae', onLoadFrameComplete);
+  	//Load first Collada-Model
+	frameLoader.load('./assets/frame_zmr250.dae', onLoadFrameComplete);
   }
 
   function onLoadFrameComplete(collada) {
-  	erstelle3DWelt();
+  	create3DWorld();
 
   	frame = collada.scene;
   	frame.visible = true;
+  	rotate(frame);
   	scene.add(frame);
 
-  	normalArmsLoader.load('/../assets/copter_normal_arms.dae', onLoadNormalArmsComplete);
+  	armsLoader.load('./assets/arms_zmr250.dae', onLoadArmsComplete);
   }
 
-  function onLoadNormalArmsComplete(collada) {
-  	normalArms = collada.scene;
-  	normalArms.visible = true;
-  	scene.add(normalArms);
+  function onLoadArmsComplete(collada) {
+  	arms = collada.scene;
+  	arms.visible = true;
+  	rotate(arms);
+  	scene.add(arms);
 
-  	motorBlackLoader.load('/../assets/copter_motors_black.dae', onLoadMotorBlackComplete);
+  	boardLoader.load('./assets/board.dae', onLoadBoardComplete);
   }
 
-  function onLoadMotorBlackComplete(collada) {
-  	motorBlack = collada.scene;
-  	scene.add(motorBlack);
-  	motorBlack.visible = true;
+  function onLoadBoardComplete(collada) {
+  	board = collada.scene;
+  	board.visible = true;
+  	rotate(board);
+  	scene.add(board);
 
-  	propsLoader.load('/../assets/copter_props.dae', onLoadPropsComplete);
+  	motorLoader[0].load('./assets/motor1.dae', onLoadMotor1Complete);
   }
 
-  function onLoadPropsComplete(collada) {
-  	props = collada.scene;
-  	scene.add(props);
-  	props.visible = true;
+  function onLoadMotor1Complete(collada) {
+	motor1 = collada.scene;
+	motor1.visible = true;
+	rotate(motor1);
+	scene.add(motor1);
 
-  	render();
-  	loading = false;
-  	showLoadingStatus();
-  	animate();
+	propsLoader[0].load('./assets/props1.dae', onLoadProps1Complete);
+  }
 
-  	superLightArmsLoader.load('/../assets/copter_super_light_arms.dae', onLoadSuperLightArmsComplete);
+  function onLoadProps1Complete(collada) {
+  	props1 = collada.scene;
+  	props1.visible = true;
+  	rotate(props1);
+  	scene.add(props1);
+
+  	receiverLoader[0].load('./assets/receiver1.dae', onLoadReceiver1Complete);
+  }
+
+  function onLoadReceiver1Complete(collada) {
+  	receiver1 = collada.scene;
+  	receiver1.visible = true;
+  	rotate(receiver1);
+  	scene.add(receiver1);
+
+  	controllerLoader[0].load('./assets/controller1.dae', onLoadController1Complete);
+  }
+
+  function onLoadController1Complete(collada) {
+	controller1 = collada.scene;
+	controller1.visible = true;
+	rotate(controller1);
+	scene.add(controller1);
+
+	// All visible objects loaded completely, now showing the scene
+	render();
+	loading = false;
+	showLoadingStatus();
+	animate();
+
+	// Load invisible objects afterwards
+	motorLoader[1].load('./assets/motor2.dae', onLoadMotor2Complete);
+  }
+
+  function onLoadMotor2Complete(collada) {
+	motor2 = collada.scene;
+  	motor2.visible = false;
+  	rotate(motor2);
+  	scene.add(motor2);
+
+  	motorLoader[2].load('./assets/motor3.dae', onLoadMotor3Complete);
+  }
+
+  function onLoadMotor3Complete(collada) {
+  	motor3 = collada.scene;
+  	motor3.visible = false;
+  	rotate(motor3);
+  	scene.add(motor3);
+
+  	propsLoader[1].load('./assets/props2.dae', onLoadProps2Complete);
+  }
+
+  function onLoadProps2Complete(collada) {
+  	props2 = collada.scene;
+  	props2.visible = false;
+  	rotate(props2);
+  	scene.add(props2);
+
+  	propsLoader[2].load('./assets/props3.dae', onLoadProps3Complete);
+  }
+
+  function onLoadProps3Complete(collada) {
+  	props3 = collada.scene;
+  	props3.visible = false;
+  	rotate(props3);
+  	scene.add(props3);
+
+  	propsLoader[3].load('./assets/props4.dae', onLoadProps4Complete);
+  }
+
+  function onLoadProps4Complete(collada) {
+  	props4 = collada.scene;
+  	props4.visible = false;
+  	rotate(props4);
+  	scene.add(props4);
+
+  	receiverLoader[1].load('./assets/receiver2.dae', onLoadReceiver2Complete);
+  }
+
+  function onLoadReceiver2Complete(collada) {
+  	receiver2 = collada.scene;
+  	receiver2.visible = false;
+  	rotate(receiver2);
+  	scene.add(receiver2);
+
+  	controllerLoader[1].load('./assets/controller2.dae', onLoadController2Complete);
+  }
+
+  function onLoadController2Complete(collada) {
+	controller2 = collada.scene;
+	controller2.visible = false;
+	rotate(controller2);
+	scene.add(controller2);
+
+  	controllerLoader[2].load('./assets/controller3.dae', onLoadController3Complete);
+  }
+
+  function onLoadController3Complete(collada) {
+  	controller3 = collada.scene;
+  	controller3.visible = false;
+  	rotate(controller3);
+  	scene.add(controller3);
+
+  	controllerLoader[3].load('./assets/controller4.dae', onLoadController4Complete);
+  }
+
+  function onLoadController4Complete(collada) {
+  	controller4 = collada.scene;
+  	controller4.visible = false;
+  	rotate(controller4);
+  	scene.add(controller4);
   }
 
 
-  function onLoadSuperLightArmsComplete(collada) {
-  	superLightArms = collada.scene;
-  	superLightArms.visible = false;
-  	scene.add(superLightArms);
-
-  	lightArmsLoader.load('/../assets/copter_light_arms.dae', onLoadLightArmsComplete);
+  function rotate(object) {
+  	object.rotation.y += Math.PI / 2;
+  	object.rotation.y -= Math.PI / 8;
   }
 
-  function onLoadLightArmsComplete(collada) {
-  	lightArms = collada.scene;
-  	lightArms.visible = false;
-  	scene.add(lightArms);
-
-  	solidArmsLoader.load('/../assets/copter_solid_arms.dae', onLoadSolidArmsComplete);
-  }
-
-  function onLoadSolidArmsComplete(collada) {
-  	solidArms = collada.scene;
-  	solidArms.visible = false;
-  	scene.add(solidArms);
-
-  	motorBlueLoader.load('/../assets/copter_motors_blue.dae', onLoadMotorBlueComplete);
-  }
-
-  function onLoadMotorBlueComplete(collada) {
-  	motorBlue = collada.scene;
-  	scene.add(motorBlue);
-  	motorBlue.visible = false;
-
-  	motorGreenLoader.load('/../assets/copter_motors_green.dae', onLoadMotorGreenComplete);
-  }
-
-  function onLoadMotorGreenComplete(collada) {
-  	motorGreen = collada.scene;
-  	scene.add(motorGreen);
-  	motorGreen.visible = false;
-
-  	motorRedLoader.load('/../assets/copter_motors_red.dae', onLoadMotorRedComplete);
-  }
-
-  function onLoadMotorRedComplete(collada) {
-  	motorRed = collada.scene;
-  	scene.add(motorRed);
-  	motorRed.visible = false;
-  }
-
-  function erstelle3DWelt() {
-    //Erstellung der renderWindow
+  function create3DWorld() {
+    //Creating renderWindow
   	renderWindow = document.getElementById("webglContainer");
 
-  	//Erstellung des renderers
+  	//Creating renderer
   	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   	renderer.setSize((renderWindow.clientWidth), renderWindow.clientHeight, true);
-  	//renderer.setClearColor(0xf7f6f0);
   	renderer.setClearColor(0xFFFFFF);
 
   	renderWindow.appendChild(renderer.domElement);
 
-  	//Erstellung der 3D-Welt
+  	//Creating 3D-World
   	scene = new THREE.Scene();
 
   	addCamera();
@@ -176,12 +265,11 @@ propsLoader = new THREE.ColladaLoader();
   }
 
   function addCamera() {
-    //Erstellung der Kamera			Betrachtungswinkel, Seitenverhältnis, ???, Kamerasichtweite (kann bis 1000 weit sehen)
-  	kamera = new THREE.PerspectiveCamera(30, (renderWindow.clientWidth)/renderWindow.clientHeight, 1, 100000);
-  	kamera.position.z = 13;
-  	kamera.position.y = 7;
-  	kamera.rotation.x = -0.78; // in rad, sind ca. 45°
-  	scene.add(kamera);
+    //Creating camera
+  	camera = new THREE.PerspectiveCamera(38, (renderWindow.clientWidth)/renderWindow.clientHeight, 1, 100000);
+  	camera.position.z = 13;
+  	camera.position.y = 6;
+  	scene.add(camera);
   }
 
   function addLights() {
@@ -207,14 +295,14 @@ propsLoader = new THREE.ColladaLoader();
   }
 
   function addControls() {
-    controls = new THREE.OrbitControls(kamera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.9;
     controls.enableZoom = true;
   }
 
   function render() {
-  	renderer.render(scene, kamera);
+  	renderer.render(scene, camera);
   	renderWindow.appendChild(renderer.domElement);
   }
 
@@ -233,6 +321,9 @@ propsLoader = new THREE.ColladaLoader();
   	}
   }
 
+
+  //Select functions
+
   function selectedFrame(value) {
     var strUser = value;
 
@@ -240,8 +331,11 @@ propsLoader = new THREE.ColladaLoader();
   		frame.visible = false;
 
   		deselectArms();
+		deselectBoard();
   		deselectMotor();
   		deselectProps();
+		deselectReceiver();
+		deselectController();
   	}
   	else if (strUser == "1") {
   		frame.visible = true;
@@ -252,37 +346,25 @@ propsLoader = new THREE.ColladaLoader();
     var strUser = value;
 
   	if (strUser == "0") {
-  		superLightArms.visible = false;
-  		lightArms.visible = false;
-  		normalArms.visible = false;
-  		solidArms.visible = false;
+  		arms.visible = false;
 
   		deselectMotor();
   		deselectProps();
+		deselectController();
   	}
   	else if (strUser == "1") {
-  		superLightArms.visible = true;
-  		lightArms.visible = false;
-  		normalArms.visible = false;
-  		solidArms.visible = false;
+  		arms.visible = true;
   	}
-  	else if (strUser == "2") {
-  		superLightArms.visible = false;
-  		lightArms.visible = true;
-  		normalArms.visible = false;
-  		solidArms.visible = false;
+  }
+
+  function selectedBoard(value) {
+    var strUser = value;
+
+  	if (strUser == "0") {
+  		board.visible = false;
   	}
-  	else if (strUser == "3") {
-  		superLightArms.visible = false;
-  		lightArms.visible = false;
-  		normalArms.visible = true;
-  		solidArms.visible = false;
-  	}
-  	else if (strUser == "4") {
-  		superLightArms.visible = false;
-  		lightArms.visible = false;
-  		normalArms.visible = false;
-  		solidArms.visible = true;
+  	else if (strUser == "1") {
+  		board.visible = true;
   	}
   }
 
@@ -290,36 +372,26 @@ propsLoader = new THREE.ColladaLoader();
     var strUser = value;
 
     if (strUser == "0") {
-      motorBlack.visible = false;
-      motorBlue.visible = false;
-      motorGreen.visible = false;
-      motorRed.visible = false;
+      motor1.visible = false;
+      motor2.visible = false;
+      motor3.visible = false;
 
       deselectProps();
     }
     else if (strUser == "1") {
-      motorBlack.visible = true;
-      motorBlue.visible = false;
-      motorGreen.visible = false;
-      motorRed.visible = false;
+      motor1.visible = true;
+      motor2.visible = false;
+      motor3.visible = false;
     }
     else if (strUser == "2") {
-      motorBlack.visible = false;
-      motorBlue.visible = true;
-      motorGreen.visible = false;
-      motorRed.visible = false;
+      motor1.visible = false;
+      motor2.visible = true;
+      motor3.visible = false;
     }
     else if (strUser == "3") {
-      motorBlack.visible = false;
-      motorBlue.visible = false;
-      motorGreen.visible = true;
-      motorRed.visible = false;
-    }
-    else if (strUser == "4") {
-      motorBlack.visible = false;
-      motorBlue.visible = false;
-      motorGreen.visible = false;
-      motorRed.visible = true;
+      motor1.visible = false;
+      motor2.visible = false;
+      motor3.visible = true;
     }
   }
 
@@ -327,139 +399,412 @@ propsLoader = new THREE.ColladaLoader();
     var strUser = value;
 
   	if (strUser == "0") {
-  		props.visible = false;
+  		props1.visible = false;
+		props2.visible = false;
+		props3.visible = false;
+		props4.visible = false;
   	}
   	else if (strUser == "1") {
-  		props.visible = true;
+  		props1.visible = true;
+		props2.visible = false;
+		props3.visible = false;
+		props4.visible = false;
+  	}
+	else if (strUser == "2") {
+  		props1.visible = false;
+		props2.visible = true;
+		props3.visible = false;
+		props4.visible = false;
+  	}
+	else if (strUser == "3") {
+  		props1.visible = false;
+		props2.visible = false;
+		props3.visible = true;
+		props4.visible = false;
+  	}
+	else if (strUser == "4") {
+  		props1.visible = false;
+		props2.visible = false;
+		props3.visible = false;
+		props4.visible = true;
   	}
   }
 
+  function selectedReceiver(value) {
+    var strUser = value;
+
+  	if (strUser == "0") {
+  		receiver1.visible = false;
+		receiver2.visible = false;
+	}
+	else if (strUser == "1") {
+		receiver1.visible = true;
+		receiver2.visible = false;
+	}
+	else if (strUser == "2") {
+		receiver1.visible = false;
+		receiver2.visible = true;
+	}
+  }
+
+  function selectedController(value) {
+    var strUser = value;
+
+  	if (strUser == "0") {
+  		controller1.visible = false;
+		controller2.visible = false;
+		controller3.visible = false;
+		controller4.visible = false;
+	}
+	else if (strUser == "1") {
+		controller1.visible = true;
+		controller2.visible = false;
+		controller3.visible = false;
+		controller4.visible = false;
+	}
+	else if (strUser == "2") {
+		controller1.visible = false;
+		controller2.visible = true;
+		controller3.visible = false;
+		controller4.visible = false;
+	}
+	else if (strUser == "3") {
+		controller1.visible = false;
+		controller2.visible = false;
+		controller3.visible = true;
+		controller4.visible = false;
+	}
+	else if (strUser == "4") {
+		controller1.visible = false;
+		controller2.visible = false;
+		controller3.visible = false;
+		controller4.visible = true;
+	}
+  }
+
+
+//Deselect functions
 
 function deselectArms() {
-	//dropdownArms.options[0].selected = true;
+	arms.visible = false;
+}
 
-	superLightArms.visible = false;
-	lightArms.visible = false;
-	normalArms.visible = false;
-	solidArms.visible = false;
+function deselectBoard() {
+	board.visible = false;
 }
 
 function deselectMotor() {
-	//dropdownMotor.options[0].selected = true;
-
-	motorBlack.visible = false;
-	motorBlue.visible = false;
-	motorGreen.visible = false;
-	motorRed.visible = false;
+	motor1.visible = false;
+	motor2.visible = false;
+	motor3.visible = false;
 }
 
 function deselectProps() {
-	//dropdownProps.options[0].selected = true;
-
-	props.visible = false;
+	props1.visible = false;
+	props2.visible = false;
+	props3.visible = false;
+	props4.visible = false;
 }
 
-  function selectedStands() {
-  	var e = document.getElementById("standsSelect");
-  	var strUser = e.options[e.selectedIndex].value;
+function deselectReceiver() {
+	receiver1.visible = false;
+	receiver2.visible = false;
+}
 
-  	if (strUser == "0") {
-  		stands.visible = false;
-  	}
-  	else if (strUser == "1") {
-  		stands.visible = true;
-  	}
-  }
+function deselectController() {
+	controller1.visible = false;
+	controller2.visible = false;
+	controller3.visible = false;
+	controller4.visible = false;
+}
 
   -->
 
+//Vorbereitung
+//CSRF Token wird ausgelesen
+//Wird für den POST benötigt
+  $(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  });
+
+  //Abfangen der einzelnen Buttons
+  //Hier werden die obigen Funktionen aufgerufen
+  //und die Werte für den Warenkorb geändert
   $(function() {
 
 
         $("#frame0").click( function()
            {
              selectedFrame(0);
+             frameid = 0;
            }
         );
 
         $("#frame1").click( function()
            {
              selectedFrame(1);
+             var frameid = 3;
+             var framename = timestamp + ' Frame ZMR 250 Carbon';
+             var frameamount = 1;
+             var frameprice = 49.99;
            }
         );
 
         $("#arm0").click( function()
            {
              selectedArms(0);
+             frameid = 0;
            }
         );
 
         $("#arm1").click( function()
            {
              selectedArms(1);
+             var frameid = 3;
+             var framename = timestamp + ' Frame ZMR 250 Carbon';
+             var frameamount = 1;
+             var frameprice = 49.99;
            }
         );
 
-        $("#arm2").click( function()
+        $("#board0").click( function()
            {
-             selectedArms(2);
+             selectedBoard(0);
+             powerid = 0;
            }
         );
 
-        $("#arm3").click( function()
+        $("#board1").click( function()
            {
-             selectedArms(3);
-           }
-        );
-
-        $("#arm4").click( function()
-           {
-             selectedArms(4);
+             selectedBoard(1);
+             var powerid = 7;
+             var powername = timestamp + " Mini Stromverteilerplatine";
+             var poweramount = 1;
+             var powerprice = 15.49;
            }
         );
 
         $("#motor0").click( function()
              {
                selectedMotor(0);
+               motorid = 0;
              }
         );
 
         $("#motor1").click( function()
              {
                selectedMotor(1);
+               motorid = 4;
+               motorname = timestamp + " EMAX RS2205 (2300kv)";
+               motorprice = 94.9;
+               motoramount = 1;
              }
         );
 
         $("#motor2").click( function()
              {
                selectedMotor(2);
+               motorid = 4;
+               motorname = timestamp + " DYS 1806 (2300kv)";
+               motorprice = 94.9;
+               motoramount = 1;
              }
         );
 
         $("#motor3").click( function()
              {
                selectedMotor(3);
-             }
-        );
-
-        $("#motor4").click( function()
-             {
-               selectedMotor(4);
+               motorid = 13;
+               motorname = timestamp + " Tarot 4008 (3300kv)";
+               motorprice = 364.49;
+               motoramount = 1;
              }
         );
 
         $("#prop0").click( function()
              {
                selectedProps(0);
+               propid = 0;
              }
         );
 
         $("#prop1").click( function()
              {
                selectedProps(1);
+               propid = 9;
+               propname = timestamp + " 6 x 4.5R Schwarz";
+               propamount = 1;
+               propprice = 34.45;
              }
         );
 
+        $("#prop2").click( function()
+             {
+               selectedProps(2);
+               propid = 9;
+               propname = timestamp + " 6 x 4.5R Silber";
+               propamount = 1;
+               propprice = 34.45;
+             }
+        );
+
+        $("#prop3").click( function()
+             {
+               selectedProps(3);
+               propid = 16;
+               propname = timestamp + " Tarot A14EVO Schwarz";
+               propamount = 1;
+               propprice = 99.89;
+             }
+        );
+
+        $("#prop4").click( function()
+             {
+               selectedProps(4);
+               propid = 16;
+               propname = timestamp + " Tarot A14EVO Rot";
+               propamount = 1;
+               propprice = 99.89;
+             }
+        );
+
+        $("#receiver0").click( function()
+             {
+               selectedReceiver(0);
+               receiverid = 0;
+             }
+        );
+
+		$("#receiver1").click( function()
+             {
+               selectedReceiver(1);
+               receiverid = 10;
+               receivername = timestamp + " OrangeRX R615X";
+               receiveramount = 1;
+               receiverprice = 34.90;
+             }
+        );
+
+		$("#receiver2").click( function()
+             {
+               selectedReceiver(2);
+               receiverid = 10;
+               receivername = timestamp + " Graupner GR-12 HoTT";
+               receiveramount = 1;
+               receiverprice = 49.90;
+             }
+        );
+
+		$("#controller0").click( function()
+             {
+               selectedController(0);
+               controllerid = 0;
+             }
+        );
+
+		$("#controller1").click( function()
+             {
+               selectedController(1);
+               controllerid = 5;
+               controllername = timestamp + " ESC 2-4S Oneshot 20A Blau";
+               controlleramount = 1;
+               controllerprice = 64.49;
+             }
+        );
+
+		$("#controller2").click( function()
+             {
+               selectedController(2);
+               controllerid = 5;
+               controllername = timestamp + " ESC 2-4S Oneshot 20A Durchsichtig";
+               controlleramount = 1;
+               controllerprice = 64.49;
+             }
+        );
+
+		$("#controller3").click( function()
+             {
+               selectedController(3);
+               controllerid = 17;
+               controllername = timestamp + " EMAX 12A Simon K Schwarz";
+               controlleramount = 1;
+               controllerprice = 79.49;
+             }
+        );
+
+		$("#controller4").click( function()
+             {
+               selectedController(4);
+               controllerid = 17;
+               controllername = timestamp + " EMAX 12A Simon K Schwarz";
+               controlleramount = 1;
+               controllerprice = 79.49;
+             }
+        );
+
+    //Konfigurierte Drohnendaten in den Warenkorb senden
+    $("#senddrone").click( function()
+       {
+         //Daten
+         var buildservice = $('#sel1').val();
+
+         var data={
+           buildservice: buildservice,
+           timestamp: timestamp,
+           frameid: frameid,
+           framename: framename,
+           frameamount: frameamount,
+           frameprice: frameprice,
+           powerid: powerid,
+           powername: powername,
+           poweramount: poweramount,
+           powerprice: powerprice,
+           motorid: motorid,
+           motorname: motorname,
+           motoramount: motoramount,
+           motorprice: motorprice,
+           propid: propid,
+           propname: propname,
+           propamount: propamount,
+           propprice: propprice,
+           receiverid: receiverid,
+           receivername: receivername,
+           receiveramount: receiveramount,
+           receiverprice: receiverprice,
+           controllerid: controllerid,
+           controllername: controllername,
+           controlleramount: controlleramount,
+           controllerprice: controllerprice,
+
+         }
+
+         //Wenn eine Komponente abgewählt wurde
+         if(frameid == 0 || motorid == 0 || powerid == 0 || propid == 0 || receiverid == 0 || controllerid == 0)
+         {
+           alert('Sie müssen alle Komponenten wählen');
+         }
+
+         else
+         {
+           //Nach dem Abschicken weiterleiten zum Warenkorb
+           $.ajax({
+                type: "POST",
+                url: '/addToCartAJAX',
+                data: data,
+                success: function() {
+                    location.href = "/shoppingcart";
+                }
+           });
+         }
+
+
+
+       }
+    );
 
   });
   </script>
@@ -472,103 +817,106 @@ function deselectProps() {
     </div>
     <div class="col-md-6">
   	<div id="buttons">
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="frame0" class="btn btn-primary">Kein Rahmen</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="frame1" class="btn btn-primary">ZMR 250 Rahmen</button>
+  	  </div>
+      </div>
 
-      <!-- <form action="/finishconfig" method="POST">
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="arm0" class="btn btn-primary">Keine Arme</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="arm1" class="btn btn-primary">ZMR 250 Arme</button>
+  	  </div>
+      </div>
 
-  						<select class="configselect form-control" id="frameSelect" onchange="selectedFrame();" name="frames" size="1">
-  							<option value="0">No frame</option>
-  							<option value="1" selected>TBS Discovery Pro frame</option>
-  						</select>
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="board0" class="btn btn-primary">Keine Stromverteilerplatine</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="board1" class="btn btn-primary">Mini Stromverteilerplatine</button>
+  	  </div>
+      </div>
 
-  						<select class="configselect form-control" id="armsSelect" onchange="selectedArms();" name="arms" size="1">
-                <option value="0">No arms</option>
-  							<option value="1">Super light arms</option>
-  							<option value="2">Light arms</option>
-  							<option value="3" selected>Normal arms</option>
-  							<option value="4">Solid arms</option>
-  						</select>
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="motor0" class="btn btn-primary">Kein Motor</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="motor1" class="btn btn-primary">EMAX RS2205 (2300kv)</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="motor2" class="btn btn-primary">DYS 1806 (2300kv)</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="motor3" class="btn btn-primary">Tarot 4008 (3300kv)</button>
+  	  </div>
+      </div>
+
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="prop0" class="btn btn-primary">Keine Props</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="prop1" class="btn btn-primary">6 x 4.5"R Schwarz</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="prop2" class="btn btn-primary">6 x 4.5"R Silber</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="prop3" class="btn btn-primary">Tarot A14EVO Schwarz</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="prop4" class="btn btn-primary">Tarot A14EVO Rot</button>
+  	  </div>
+      </div>
+
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="receiver0" class="btn btn-primary">Kein Empfänger</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="receiver1" class="btn btn-primary">OrangeRX R615X</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="receiver2" class="btn btn-primary">Graupner GR-12 HoTT</button>
+  	  </div>
+      </div>
+
+      <div class="btn-group btn-group-justified" role="group">
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="controller0" class="btn btn-primary">Kein Flugcontroller</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="controller1" class="btn btn-primary">ESC 2-4S Oneshot 20A Blau</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="controller2" class="btn btn-primary">ESC 2-4S Oneshot 20A Durchsichtig</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="controller3" class="btn btn-primary">EMAX 12A Simon K Schwarz</button>
+  	  </div>
+  	  <div class="btn-group" role="group">
+  	    <button type="button" id="controller4" class="btn btn-primary">EMAX 12A Simon K Schwarz-Rot</button>
+  	  </div>
+    </div>
 
 
-  						<select class="configselect form-control" id="motorSelect" onchange="selectedMotor();" name="motors" size="1">
-  							<option value="0">No motor</option>
-  							<option value="1" selected>Black motor</option>
-  							<option value="2">Blue motor</option>
-  							<option value="3">Green motor</option>
-  							<option value="4">Red motor</option>
-  						</select>
-
-  						<select class="configselect form-control" id="propSelect" onchange="selectedProps();" name="props" size="1">
-  							<option value="0">No props</option>
-  							<option value="1" selected>Standard props</option>
-  						</select>
-                {{ csrf_field() }}
-
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Abschließen</button>
-
-              </form> -->
-              <div class="btn-group btn-group-justified" role="group">
-                <div class="btn-group" role="group">
-                  <button type="button" id="frame0" class="btn btn-primary">Kein Rahmen</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="frame1" class="btn btn-primary">TBS Discovery Pro frame</button>
-                </div>
-              </div>
-
-              <div class="btn-group btn-group-justified" role="group">
-                <div class="btn-group" role="group">
-                  <button type="button" id="arm0" class="btn btn-primary">Keine Arme</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="arm1" class="btn btn-primary">Superleichte Arme</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="arm2" class="btn btn-primary">Leichte Arme</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="arm3" class="btn btn-primary">Normale Arme</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="arm4" class="btn btn-primary">Solide Arme</button>
-                </div>
-              </div>
-
-              <div class="btn-group btn-group-justified" role="group">
-                <div class="btn-group" role="group">
-                  <button type="button" id="motor0" class="btn btn-primary">Kein Motor</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="motor1" class="btn btn-primary">Schwarzer Motor</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="motor2" class="btn btn-primary">Blauer Motor</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="motor3" class="btn btn-primary">Grüner Motor</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="motor4" class="btn btn-primary">Roter Motor</button>
-                </div>
-              </div>
-
-              <div class="btn-group btn-group-justified" role="group">
-                <div class="btn-group" role="group">
-                  <button type="button" id="prop0" class="btn btn-primary">Keine Props</button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" id="prop1" class="btn btn-primary">Standard Props</button>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="sel1">Drohne zusammenbauen?</label>
-                <select class="form-control" id="sel1">
-                  <option>Ja</option>
-                  <option>Nein</option>
-                </select>
-              </div>
-              <button class="btn btn-lg">Abschicken</button>
-</div>
+    <div class="form-group">
+  	  <label for="sel1">Drohne zusammenbauen?</label>
+  	  <select class="form-control" id="sel1">
+  	    <option>Ja</option>
+  	    <option>Nein</option>
+  	  </select>
+    </div>
+    <button id="senddrone" class="btn btn-lg">Abschicken</button>
+  </div>
 </div>
 
 

@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Articles' => $baseDir . '/database/migrations/2016_10_12_135509_articles.php',
-    'Categories' => $baseDir . '/database/migrations/2017_03_05_193052_categories.php',
+    'Categories' => $baseDir . '/database/migrations/2016_10_12_12000_categories.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
@@ -84,6 +84,9 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+    'OrderDetails' => $baseDir . '/database/migrations/2017_04_03_231554_OrderDetails.php',
+    'Orderadresses' => $baseDir . '/database/migrations/2017_04_04_135820_orderadresses.php',
+    'Orders' => $baseDir . '/database/migrations/2017_04_03_225437_Orders.php',
     'PHPUnit\\Framework\\TestCase' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',

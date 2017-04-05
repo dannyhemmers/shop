@@ -4,7 +4,7 @@
 
 
 <div class="container">
-<?php $bruttopreis = $article->price*1.19 ?>
+<?php $bruttopreis = round($article->price*1.19,2) ?>
 
 
     <div class="row">

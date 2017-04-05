@@ -287,7 +287,7 @@ class ComposerStaticInit3231ee25b591cc8f88a982ab3b4c49be
 
     public static $classMap = array (
         'Articles' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_135509_articles.php',
-        'Categories' => __DIR__ . '/../..' . '/database/migrations/2017_03_05_193052_categories.php',
+        'Categories' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_12000_categories.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
@@ -364,6 +364,9 @@ class ComposerStaticInit3231ee25b591cc8f88a982ab3b4c49be
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'OrderDetails' => __DIR__ . '/../..' . '/database/migrations/2017_04_03_231554_OrderDetails.php',
+        'Orderadresses' => __DIR__ . '/../..' . '/database/migrations/2017_04_04_135820_orderadresses.php',
+        'Orders' => __DIR__ . '/../..' . '/database/migrations/2017_04_03_225437_Orders.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',

@@ -12,17 +12,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      //Testnutzer mit Adminrechten
        DB::table('users')->insert([
            'name' => 'admin',
            'email' => 'admin@confidro.com',
            'password' => bcrypt('confidroadmin'),
+           'is_admin' => 1,
        ]);
 
+       //Testnutzer (Kunde)
        DB::table('users')->insert([
            'name' => 'testshopper',
            'email' => 'testshopper@web.de',
            'password' => bcrypt('testshopper'),
        ]);
+
+       //ID Reserviert fuer Gastkaeufe
+       DB::table('users')->insert([
+           'name' => 'gast',
+           'email' => 'gast@confidro.com',
+           'password' => bcrypt('gast'),
+       ]);
+
 
        DB::table('categories')->insert([
           'name' => 'complete',
@@ -62,7 +73,7 @@ class DatabaseSeeder extends Seeder
           'image' => 'zmr250.jpg',
           'description' => 'ZMR 250',
           'description_long' => 'ZMR 250 mit folgenden Spezifikationen:',
-          'price' => 225,
+          'price' => 369.59,
        ]);
 
        DB::table('articles')->insert([
@@ -71,7 +82,7 @@ class DatabaseSeeder extends Seeder
           'image' => 'DrohneFull.jpg',
           'description' => 'Tarot Drohne',
           'description_long' => 'Tarot Drohne mit folgenden Spezifikationen:',
-          'price' => 790,
+          'price' => 1229.49,
        ]);
 
        DB::table('articles')->insert([
@@ -84,7 +95,7 @@ class DatabaseSeeder extends Seeder
           'width' => 180,
           'length' => 230,
           'height' => 60,
-          'price' => 30,
+          'price' => 49.99,
       ]);
 
       DB::table('articles')->insert([
@@ -95,7 +106,7 @@ class DatabaseSeeder extends Seeder
          'description_long' => '4er Pack<br>KV: 2300<br>Durchmesser Propeller Schaft: M5',
          'weight' => 28.8,
          'length' => 31.7,
-         'price' => 60,
+         'price' => 94.90,
      ]);
 
      DB::table('articles')->insert([
@@ -108,7 +119,7 @@ class DatabaseSeeder extends Seeder
         'width' => 23,
         'length' => 13,
         'height' => 3,
-        'price' => 40,
+        'price' => 64.49,
     ]);
 
     DB::table('articles')->insert([
@@ -121,7 +132,7 @@ class DatabaseSeeder extends Seeder
        'width' => 42,
        'length' => 24,
        'height' => 11,
-       'price' => 10,
+       'price' => 15.49,
    ]);
 
    DB::table('articles')->insert([
@@ -134,7 +145,7 @@ class DatabaseSeeder extends Seeder
       'width' => 36,
       'length' => 36,
       'height' => 1.6,
-      'price' => 10,
+      'price' => 15.49,
   ]);
 
   DB::table('articles')->insert([
@@ -143,7 +154,7 @@ class DatabaseSeeder extends Seeder
      'image' => 'FlugcontrollerCC3D.JPG',
      'description' => 'CC3D Flugsteuerung',
      'description_long' => 'CC3D Flugsteuerung für OPENPILOT oder CLEANFLIGHT Software',
-     'price' => 20,
+     'price' => 34.89,
  ]);
 
  DB::table('articles')->insert([
@@ -153,7 +164,7 @@ class DatabaseSeeder extends Seeder
     'description' => 'Durchmesser: 6 Zoll (15,24cm)',
     'description_long' => 'Durchmesser: 6 Zoll (15,24cm)<br>Steigung: 4.5 Zoll (11,43cm)Bohrung: 6mm (inkl. Adapter für 3mm, 4mm, 5mm Wellendurchmesser)<br>Material: Carbon-Verstärktes Nylon<br>Farbe: Schwarz<br>Inhalt: 4 Stück- Rechtsdrehend (R)',
     'weight' => 5,
-    'price' => 20,
+    'price' => 34.45,
 ]);
 
 DB::table('articles')->insert([
@@ -166,7 +177,7 @@ DB::table('articles')->insert([
    'width' => 43,
    'length' => 22,
    'height' => 13,
-   'price' => 20,
+   'price' => 34.90,
 ]);
 
 DB::table('articles')->insert([
@@ -175,7 +186,7 @@ DB::table('articles')->insert([
    'image' => 'Kabelset.jpg',
    'description' => '4 Stück Servokabel',
    'description_long' => '4 Stück Servokabel<br>Diverse Stromkabel<br>Diverse Stecker<br>Schrumpfschläuche<br>Kabelbinder',
-   'price' => 15,
+   'price' => 24.99,
 ]);
 
 DB::table('articles')->insert([
@@ -185,7 +196,7 @@ DB::table('articles')->insert([
    'description' => '650 mm Motoren abstand',
    'description_long' => '650 mm Motoren abstand<br>Propeller: 12-15 Zoll<br>Durchmesser 650mm<br>3K Carbon<br>16mm 3K Carbon Ausleger',
    'weight' => 476,
-   'price' => 120,
+   'price' => 189.89,
 ]);
 
 DB::table('articles')->insert([
@@ -196,7 +207,7 @@ DB::table('articles')->insert([
    'description_long' => 'KV: 3300<br>Durchmesser: 44,5 mm<br>Durchmesser Propeller Schaft: 12mm',
    'weight' => 85,
    'length' => 19,
-   'price' => 240,
+   'price' => 364.49,
 ]);
 
 DB::table('articles')->insert([
@@ -209,7 +220,7 @@ DB::table('articles')->insert([
    'width' => 50,
    'length' => 50,
    'height' => 11.5,
-   'price' => 15,
+   'price' => 24.99,
 ]);
 
 DB::table('articles')->insert([
@@ -218,7 +229,7 @@ DB::table('articles')->insert([
    'image' => 'TarotZYX-MFligthController.jpg',
    'description' => 'Flight Controller ZYX-M mit GPS Kompass Modul',
    'description_long' => 'Flight Controller ZYX-M<br>GPS Kompass Modul<br>Power Modul zur Spannungsversorgung<br>Signal LED<br>USB-Modul zum Anschluss am PC (inkl. USB Kabel)<br>8x Patchkabel zur Verbindung mit dem Empfänger<br>Klebepads<br><br>Daten Flight Controller<br>	Größe: 55mm x 40mm x 15mm<br>	Gewicht 46 g<br>Spannung 4,8 – 5,5V<br><br>Daten GPS Modul:<br>Größe: 50mm x 50mm x 15mm<br>Gewicht: 27g<br>',
-   'price' => 150,
+   'price' => 229.50,
 ]);
 
 DB::table('articles')->insert([
@@ -228,7 +239,7 @@ DB::table('articles')->insert([
    'description' => 'Durchmesser: 15 Zoll',
    'description_long' => 'Durchmesser: 15 Zoll<br>Steigung: 4.5 Zoll<br>Bohrung:4mm Mittelbohrung (Befestigungslöcher je 3mm)<br>Material: Carbon Fiber<br>Farbe: Schwarz<br>Inhalt: 4 Stück- Rechtsdrehend (R)',
    'weight' => 25,
-   'price' => 65,
+   'price' => 99.89,
 ]);
 
 DB::table('articles')->insert([
@@ -241,7 +252,7 @@ DB::table('articles')->insert([
    'width' => 22,
    'length' => 17,
    'height' => 7,
-   'price' => 50,
+   'price' => 79.49,
 ]);
 
 DB::table('articles')->insert([
@@ -250,7 +261,16 @@ DB::table('articles')->insert([
    'image' => 'TarotAnschlusskabelset.jpg',
    'description' => 'Kabelset',
    'description_long' => '4 Stück Servokabel<br>Diverse Stromkabel<br>Diverse Stecker<br>Schrumpfschläuche<br>Kabelbinder<br>Div. Kleinmaterial',
-   'price' => 50,
+   'price' => 79.89,
+]);
+
+DB::table('articles')->insert([
+   'category' => 8,
+   'name' => 'Zusammenbauservice',
+   'image' => 'zusammenbau.jpg',
+   'description' => 'Zusammenbauservice',
+   'description_long' => 'Zusammenbauservice',
+   'price' => 130,
 ]);
 
 DB::table('articles')->insert([
@@ -259,7 +279,7 @@ DB::table('articles')->insert([
    'image' => 'Landegestell.jpg',
    'description' => 'Ansteuerung: TL8X002 Controller',
    'description_long' => 'Ansteuerung: TL8X002 Controller<br>Betriebsspannung: 3S-6S (max. 25.2V)',
-   'price' => 80,
+   'price' => 124.49,
 ]);
 
 

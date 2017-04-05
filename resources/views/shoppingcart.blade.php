@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
 
-
     <div class="row">
 
       <h1>Warenkorb</h1>
@@ -27,11 +26,11 @@
         @endforeach
 
         <p>
-          <kbd>Nettopreis: {{Cart::total() - Cart::tax()}}€</kbd>
+          <kbd>Nettopreis: {{Cart::total(2, '.', '') - Cart::tax(2, '.', '')}}€</kbd>
           <br />
-          <kbd>+ 19% MwSt.: {{Cart::tax()}}€</kbd>
+          <kbd>+ 19% MwSt.: {{Cart::tax(2, '.', '')}}€</kbd>
           <br />
-          <kbd>Endpreis: {{Cart::total()}}€</kbd>
+          <kbd>Endpreis: {{Cart::total(2, '.', '')}}€</kbd>
         </p>
       @endif
     </div>
@@ -39,10 +38,15 @@
     </div>
 
     <div class="row">
-      <form action="destroycart" method="POST">
+      <form style="display: inline;" action="destroycart" method="POST">
         {{ csrf_field() }}
-      <button type="submit">Warenkorb löschen</button>
+      <button class="btn btn-danger" type="submit">Warenkorb löschen</button>
     </form>
+
+
+
+        <a href="{{url('/checkout')}}"><button class="btn btn-primary" type="submit">Zur Kasse</button></a>
+
     </div>
 
 

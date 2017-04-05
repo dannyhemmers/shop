@@ -13,8 +13,6 @@ class MainController extends Controller
 
      public function index()
     {
-        $drones = DB::table('drones')->limit(3)->get();
-
-        return view('shopmain', ['drones' => $drones]);
+        return view('shopmain');
     }
 }
